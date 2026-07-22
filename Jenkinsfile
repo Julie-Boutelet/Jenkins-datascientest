@@ -1,11 +1,8 @@
 pipeline {
-    agent any
-
-    stages {
-        stage('Test') {
-            steps {
-                echo 'Pipeline Jenkins démarré'
-            }
-        }
-    }
+  agent any
+  environment { 
+    DOCKER_ID = "dstdockerhub"
+    DOCKER_IMAGE = "datascientestapi"
+    DOCKER_TAG = "v.${BUILD_ID}.0" 
+  }
 }
