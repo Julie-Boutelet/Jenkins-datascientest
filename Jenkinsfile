@@ -24,7 +24,7 @@ pipeline {
         stage('Testing') {
             steps {
                 echo 'Running tests...'
-                sh 'python3 -m unittest'
+                sh 'venv/bin/python -m unittest'
             }
         }
 
