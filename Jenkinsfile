@@ -1,7 +1,7 @@
 pipeline {
     agent any
 
-    environment { 
+    environment {
         DOCKER_ID = "dstdockerhub"
         DOCKER_IMAGE = "datascientestapi"
         DOCKER_TAG = "v.${BUILD_ID}.0"
@@ -12,7 +12,12 @@ pipeline {
         stage('Building') {
             steps {
                 echo 'Installing dependencies...'
-                sh 'pip3 install -r requirements.txt'
+                sh '''
+                    python3 -m venv venv
+                    . venv/bin/activate
+                    pip install --upgrade pip
+                    pip install -r requirements.txt
+                '''
             }
         }
 
@@ -51,8 +56,7 @@ pipeline {
                 )
             }
         }
-
-        stage('Pushing and Merging') {
+stage('Pushing and Merging') {
             parallel {
 
                 stage('Pushing Image') {
