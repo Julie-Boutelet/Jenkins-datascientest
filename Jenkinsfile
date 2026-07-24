@@ -61,7 +61,7 @@ stage('Pushing and Merging') {
 
                 stage('Pushing Image') {
                     environment {
-                        DOCKERHUB_CREDENTIALS = credentials('docker_jenkins')
+                        DOCKERHUB_CREDENTIALS = credentials('mydockeruser')
                     }
 
                     steps {
